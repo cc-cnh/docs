@@ -8,6 +8,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
   <style>
     :root {
       --docsifytabs-border-color: #ededed;
@@ -90,6 +91,21 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- docsify-tabs (latest v1.x.x) -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <!-- Gitalk，一个现代化的，基于Preact和Github Issue的评论系统。 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '26ab5aa1edf01f48f934',
+      clientSecret: 'a47b3d27a1fa42da8a501f0326d330e5a192f50f',
+      repo: 'markdown-image',
+      owner: 'cc-cnh',
+      admin: ['cc-cnh'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false,
+      id: location.pathname,
+    })
+  </script>
 </body>
 
 </html>
