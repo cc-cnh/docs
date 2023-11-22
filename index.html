@@ -103,7 +103,7 @@
       admin: ['cc-cnh'],
       // facebook-like distraction free mode
       distractionFreeMode: false,
-      id: decodeURI(window.location.hash),
+      id: location.hash.match(/#(.*?)([?]|$)/)[1],
     })
   </script>
 </body>
