@@ -34,6 +34,27 @@
 
 <body>
   <div id="app">加载中</div>
+  <!-- Gitalk，一个现代化的，基于Preact和Github Issue的评论系统。 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '26ab5aa1edf01f48f934',
+      clientSecret: 'a47b3d27a1fa42da8a501f0326d330e5a192f50f',
+      repo: 'markdown-image',
+      owner: 'cc-cnh',
+      admin: ['cc-cnh'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false,
+      id: location.hash.substr(1), // 取页面的hash值来生成issue的标签
+    })
+    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
+    window.onhashchange = function (event) {
+      if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
+        location.reload()
+      }
+    }
+  </script>
   <script>
     window.$docsify = {
       name: '爱折腾的程序猿',
@@ -104,25 +125,7 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- docsify-tabs (latest v1.x.x) -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
-  <!-- Gitalk，一个现代化的，基于Preact和Github Issue的评论系统。 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script>
-    const gitalk = new Gitalk({
-      clientID: '26ab5aa1edf01f48f934',
-      clientSecret: 'a47b3d27a1fa42da8a501f0326d330e5a192f50f',
-      repo: 'markdown-image',
-      owner: 'cc-cnh',
-      admin: ['cc-cnh'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false,
-      id: location.hash.substr(1), // 取页面的hash值来生成issue的标签
-    })
-    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
-    window.onhashchange = function (event) {
-      if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
-        location.reload()
-      }
-  </script>
+
 </body>
 
 </html>
