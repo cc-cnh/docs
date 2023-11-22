@@ -70,7 +70,20 @@
         theme: 'classic', // default
         tabComments: true,      // default
         tabHeadings: true       // default
-      }
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (content) {
+            // 使用插件机制，这样每次变换页面，都会更新id，
+            // 如果不加这个，因为gitalk在new的时候只处理了一次，后面切换页面，id还是固定的
+            // 所以机上这个后每次切换，就会重新赋值gitalk.options.id，这样就是和当前页面一致了
+            // 另外如果hash只超过50，可能考虑md5处理下在赋值
+            gitalk.options.id = location.hash.substr(1);
+            return content;
+          });
+        }
+
+      ]
     }
   </script>
   <!-- Docsify v4 -->
@@ -103,7 +116,7 @@
       admin: ['cc-cnh'],
       // facebook-like distraction free mode
       distractionFreeMode: false,
-      id: location.hash.match(/#(.*?)([?]|$)/)[1],
+      id: location.hash.substr(1), // 取页面的hash值来生成issue的标签
     })
     // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
     window.onhashchange = function (event) {
